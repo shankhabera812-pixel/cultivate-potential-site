@@ -20,7 +20,7 @@ const services = [
   {
     name: 'Garden Installation',
     benefit: 'Native & drought-tolerant plantings',
-    description: 'Texas-adapted plants that thrive in Austin's climate with minimal water and maintenance.',
+    description: "Texas-adapted plants that thrive in Austin's climate with minimal water and maintenance.",
     image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80',
     icon: Flower2,
   },
