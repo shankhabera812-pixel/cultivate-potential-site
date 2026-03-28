@@ -1,64 +1,79 @@
 
 
-# Phase 0 + Phase 1 Implementation
+# Phase 2 + Phase 3 Implementation Plan
 
-## Phase 0: Foundation
+## Phase 2: Hero & First Impression
 
-### 1. `index.html`
-- Add Google Fonts link: Playfair Display (400, 700) + DM Sans (400, 500, 700)
-- Update title to "Verdant & Co. Landscape Studio — Austin, TX"
-- Update meta description and OG tags for landscaping SEO
+### 1. `src/components/Hero.tsx`
+- Full-viewport section with curated Unsplash garden/landscape background image
+- Dark overlay (bg-black/50) for text contrast
+- Parallax effect via `background-attachment: fixed`
+- Staggered CSS fade-in using animation-delay:
+  - Headline: "Where your land meets its potential." (Playfair Display, large)
+  - Subheadline: "Austin's premier landscape design & build studio"
+  - Gold CTA button: "Get Your Free Estimate" → #estimate
+  - Microcopy below CTA: "Free consultation · No obligation"
+- Trust badge row below hero content: 4 badges with Lucide icons
+  - Star icon + "5-Star Rated"
+  - Shield icon + "Licensed & Insured"
+  - MapPin icon + "Serving Austin Since 2013"
+  - Clock icon + "<2hr Response Time"
+- Animated count-up: "Trusted by 500+ Austin homeowners" — CSS counter animation or a simple `useEffect` interval that counts from 0 to 500
 
-### 2. `src/index.css`
-- Replace CSS variables with Verdant brand tokens (HSL):
-  - `--forest`: 153 38% 17% (#1A3C2E)
-  - `--gold`: 37 42% 60% (#C9A96E)  
-  - `--cream`: 30 33% 95% (#F7F4EF)
-- Map `--primary` to forest, `--accent` to gold, `--background` to cream
-- Add `@keyframes fade-up` and `@keyframes fade-in` animations
-- Add `.reveal` utility class (opacity 0 → 1, translateY)
-- Set body font to DM Sans, heading utility for Playfair Display
+### 2. `src/components/SectionDivider.tsx`
+- Reusable component with props: `fromColor` and `toColor`
+- Renders an SVG with a curved/wave path
+- Negative margin to overlap sections seamlessly
+- Two variants: `curve` (default) and `wave`
 
-### 3. `tailwind.config.ts`
-- Add `forest`, `gold`, `cream` color tokens
-- Add `fontFamily`: `heading: ['Playfair Display']`, `body: ['DM Sans']`
-- Add `fade-up`, `fade-in` animation entries
-- Add `pulse-dot` keyframe for availability indicator
+## Phase 3: Social Proof & Services
 
-### 4. Install `react-compare-slider`
-- Add to package.json dependencies
+### 3. `src/components/AsSeenIn.tsx`
+- Cream background section
+- "As Featured In" small heading
+- Row of 4 styled text logos (Austin Monthly, Houzz, Nextdoor, BBB) in muted gray
+- Uses scroll reveal for fade-up on enter
 
-### 5. `src/hooks/useScrollReveal.ts`
-- IntersectionObserver hook that adds `.revealed` class when element enters viewport
-- Returns a ref to attach to any element
-- Configurable threshold and rootMargin
+### 4. `src/components/BeforeAfterSlider.tsx`
+- Dark green background section
+- Section heading: "See the Transformation"
+- `ReactCompareSlider` with two Unsplash landscape images (before: overgrown yard, after: manicured garden)
+- Project caption on the after side: project type, neighborhood, timeline
+- Uses `useScrollReveal` for entrance animation
 
-## Phase 1: Navigation Shell
+### 5. `src/hooks/useCursorGradient.ts`
+- Hook that tracks mouse position on a container ref
+- Sets CSS custom properties (`--mouse-x`, `--mouse-y`) on the element
+- Dark sections apply a radial gradient via CSS: `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(201,169,110,0.08), transparent 50%)`
 
-### 6. `src/components/AnnouncementBar.tsx`
-- Gold background bar with spring booking text
-- Dismiss X button, stores dismissed state in `useState` (sessionStorage optional)
-- Compact, centered text, DM Sans font
+### 6. `src/components/ServicesGrid.tsx` + `src/components/ServiceCard.tsx`
+- 6 service cards in a responsive grid (1-col mobile, 2-col tablet, 3-col desktop)
+- Each ServiceCard:
+  - Unsplash image as background
+  - Lucide icon overlay
+  - Service name + one-line benefit
+  - Hover: image darkens, short description slides up
+  - Entire card is a link to #estimate
+- Services: Landscape Design, Hardscaping, Garden Installation, Irrigation Systems, Outdoor Lighting, Lawn Maintenance
+- Container uses `.reveal-stagger` for cascading entrance delays
 
-### 7. `src/components/Navbar.tsx`
-- Sticky nav below announcement bar
-- Logo text "Verdant & Co." (Playfair Display) left
-- Anchor links center: Services, Our Work, Reviews, FAQ (smooth scroll)
-- Gold CTA button right: "Get Your Free Estimate"
-- On scroll: frosted glass effect (`backdrop-blur-md`, semi-transparent bg)
-- Mobile: hamburger icon → sheet/drawer with links + CTA pinned at bottom
-- All links point to `#estimate` or respective section anchors
+### 7. Update `src/pages/Index.tsx`
+- Replace placeholder hero with `<Hero />`
+- Add `<SectionDivider />` between each section
+- Add `<AsSeenIn />` after hero divider
+- Add `<BeforeAfterSlider />` after AsSeenIn
+- Add `<ServicesGrid />` after BeforeAfter divider
+- Keep remaining placeholders for Phase 4+
 
-### 8. Update `src/pages/Index.tsx`
-- Import and render AnnouncementBar + Navbar
-- Placeholder sections for remaining phases
+### 8. Update `IMPLEMENTATION_LANDSCAPE1.md`
+- Check off all Phase 2 and Phase 3 items
 
-### 9. Update `IMPLEMENTATION_LANDSCAPE1.md`
-- Check off all Phase 0 and Phase 1 items
+## Files Created/Modified
+- **Create**: `Hero.tsx`, `SectionDivider.tsx`, `AsSeenIn.tsx`, `BeforeAfterSlider.tsx`, `ServicesGrid.tsx`, `ServiceCard.tsx`, `useCursorGradient.ts`
+- **Modify**: `Index.tsx`, `IMPLEMENTATION_LANDSCAPE1.md`
 
-## Technical Notes
-- No new routing needed — single page with anchor navigation
-- `react-hook-form` already installed
-- Will use shadcn Sheet component for mobile nav drawer
-- Smooth scroll via `scroll-behavior: smooth` on `html`
+## Unsplash Images (direct URLs)
+- Hero bg: lush Austin-style garden landscape
+- Before/After: overgrown vs manicured yard pair
+- Service cards: 6 distinct landscape/hardscape photos
 
