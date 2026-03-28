@@ -1,79 +1,147 @@
 
 
-# Phase 2 + Phase 3 Implementation Plan
+# Complete Phases 4-8: Verdant & Co. Landing Page
 
-## Phase 2: Hero & First Impression
+All remaining sections to finish the full single-page site. 10 new components, updates to `Index.tsx` and the checklist.
 
-### 1. `src/components/Hero.tsx`
-- Full-viewport section with curated Unsplash garden/landscape background image
-- Dark overlay (bg-black/50) for text contrast
-- Parallax effect via `background-attachment: fixed`
-- Staggered CSS fade-in using animation-delay:
-  - Headline: "Where your land meets its potential." (Playfair Display, large)
-  - Subheadline: "Austin's premier landscape design & build studio"
-  - Gold CTA button: "Get Your Free Estimate" → #estimate
-  - Microcopy below CTA: "Free consultation · No obligation"
-- Trust badge row below hero content: 4 badges with Lucide icons
-  - Star icon + "5-Star Rated"
-  - Shield icon + "Licensed & Insured"
-  - MapPin icon + "Serving Austin Since 2013"
-  - Clock icon + "<2hr Response Time"
-- Animated count-up: "Trusted by 500+ Austin homeowners" — CSS counter animation or a simple `useEffect` interval that counts from 0 to 500
+---
 
-### 2. `src/components/SectionDivider.tsx`
-- Reusable component with props: `fromColor` and `toColor`
-- Renders an SVG with a curved/wave path
-- Negative margin to overlap sections seamlessly
-- Two variants: `curve` (default) and `wave`
+## Phase 4: Team & Gallery
 
-## Phase 3: Social Proof & Services
+### `MeetTheTeam.tsx`
+- Dark green bg with cursor-following gradient
+- Founder card: portrait (Unsplash), name "Marco Rivera", title "Founder & Lead Designer", short bio paragraph
+- Crew photo (Unsplash group/team shot) beside or below
+- 3 animated stat counters that count up on scroll (reuse same IntersectionObserver pattern from Hero):
+  - **500+** Projects Completed
+  - **10** Years in Austin
+  - **5.0** Star Average Rating
+- Gold accent numbers, scroll-reveal on the section
 
-### 3. `src/components/AsSeenIn.tsx`
-- Cream background section
-- "As Featured In" small heading
-- Row of 4 styled text logos (Austin Monthly, Houzz, Nextdoor, BBB) in muted gray
-- Uses scroll reveal for fade-up on enter
+### `ProjectGallery.tsx`
+- Cream bg, heading "Our Work"
+- CSS-grid masonry layout (varying row spans): 6-8 Unsplash landscape photos
+- Hover overlay: project type + Austin neighborhood name (Tarrytown, Zilker, South Congress, Mueller, Barton Hills, East Austin, Westlake, Clarksville)
+- Staggered reveal on cards
 
-### 4. `src/components/BeforeAfterSlider.tsx`
-- Dark green background section
-- Section heading: "See the Transformation"
-- `ReactCompareSlider` with two Unsplash landscape images (before: overgrown yard, after: manicured garden)
-- Project caption on the after side: project type, neighborhood, timeline
-- Uses `useScrollReveal` for entrance animation
+---
 
-### 5. `src/hooks/useCursorGradient.ts`
-- Hook that tracks mouse position on a container ref
-- Sets CSS custom properties (`--mouse-x`, `--mouse-y`) on the element
-- Dark sections apply a radial gradient via CSS: `radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(201,169,110,0.08), transparent 50%)`
+## Phase 5: Reviews & FAQ
 
-### 6. `src/components/ServicesGrid.tsx` + `src/components/ServiceCard.tsx`
-- 6 service cards in a responsive grid (1-col mobile, 2-col tablet, 3-col desktop)
-- Each ServiceCard:
-  - Unsplash image as background
-  - Lucide icon overlay
-  - Service name + one-line benefit
-  - Hover: image darkens, short description slides up
-  - Entire card is a link to #estimate
-- Services: Landscape Design, Hardscaping, Garden Installation, Irrigation Systems, Outdoor Lighting, Lawn Maintenance
-- Container uses `.reveal-stagger` for cascading entrance delays
+### `Reviews.tsx`
+- Dark green bg with cursor gradient
+- Header: Google "G" icon + 5 gold stars + "127 Austin homeowners trust Verdant & Co."
+- 4 review cards in a 2x2 grid (1-col mobile):
+  - Reviewer name, neighborhood, star rating, quote text
+  - One card has a video play overlay icon (non-functional, decorative)
+- Staggered reveal on cards
 
-### 7. Update `src/pages/Index.tsx`
-- Replace placeholder hero with `<Hero />`
-- Add `<SectionDivider />` between each section
-- Add `<AsSeenIn />` after hero divider
-- Add `<BeforeAfterSlider />` after AsSeenIn
-- Add `<ServicesGrid />` after BeforeAfter divider
-- Keep remaining placeholders for Phase 4+
+### `FAQ.tsx`
+- Cream bg section
+- Heading: "Frequently Asked Questions"
+- Radix Accordion with 6 Q&As, gold chevron icons:
+  1. What areas do you serve?
+  2. How much does landscaping cost? (includes "$2,500–$15,000" transparent pricing)
+  3. How long does a typical project take?
+  4. Do you offer financing?
+  5. Are you licensed and insured?
+  6. What's included in the free estimate?
+- Warm, conversational tone in answers
 
-### 8. Update `IMPLEMENTATION_LANDSCAPE1.md`
-- Check off all Phase 2 and Phase 3 items
+---
 
-## Files Created/Modified
-- **Create**: `Hero.tsx`, `SectionDivider.tsx`, `AsSeenIn.tsx`, `BeforeAfterSlider.tsx`, `ServicesGrid.tsx`, `ServiceCard.tsx`, `useCursorGradient.ts`
-- **Modify**: `Index.tsx`, `IMPLEMENTATION_LANDSCAPE1.md`
+## Phase 6: Estimate Form & Post-Form
 
-## Unsplash Images (direct URLs)
-- Hero bg: lush Austin-style garden landscape
-- Before/After: overgrown vs manicured yard pair
-- Service cards: 6 distinct landscape/hardscape photos
+### `EstimateForm.tsx`
+- Dark green bg with cursor gradient
+- Heading: "Get Your Free Estimate"
+- Subtext with pulse-dot: "3 slots remaining for April"
+- Phone link: "Prefer to talk? Call (512) 555-0147"
+- 3-step form with progress bar (React Hook Form):
+  - **Step 1**: Service selection — 6 pill-style toggles (same services list)
+  - **Step 2**: Address / neighborhood text input
+  - **Step 3**: Name + phone + submit
+- Micro-interactions: checkmark icon on completed steps, smooth progress bar fill, green success states
+- On submit: `console.log(data)` + success message ("We'll call you within 2 hours!")
+- Uses `Progress` component for the step indicator
+
+### `WhatHappensNext.tsx`
+- Still on dark green bg, below form
+- "What Happens Next?" heading
+- 3-step horizontal timeline (vertical on mobile):
+  1. Phone icon — "We call within 2 hours"
+  2. MapPin icon — "Free on-site walkthrough"
+  3. Hammer icon — "Work begins in days"
+- Gold accent connectors between steps
+
+---
+
+## Phase 7: Footer & Sticky Elements
+
+### `LocalProofBand.tsx`
+- Cream bg
+- Static Google Maps iframe centered on Austin, TX (no API key needed — use embed URL)
+- Row of neighborhood pill tags below: Tarrytown, South Congress, Zilker, Mueller, Barton Hills, East Austin, Westlake, Clarksville
+
+### `Footer.tsx`
+- Dark green bg
+- 3-column layout (stacks on mobile):
+  - Col 1: "Verdant & Co." logo + tagline
+  - Col 2: Service links (all → #estimate)
+  - Col 3: Contact info (phone, email, Austin TX)
+- License badge: "Licensed & Insured · TICL #12345"
+- Copyright line
+
+### `StickyMobileCTA.tsx`
+- Fixed bottom bar, mobile only (`md:hidden`), appears after scrolling past hero
+- Uses IntersectionObserver on hero to toggle visibility
+- CTA text evolves based on scroll position:
+  - Default: "Get a free estimate →"
+  - Past reviews: "Join 127 happy homeowners →"
+- Links to `#estimate`
+
+### `ExitIntentBanner.tsx`
+- Desktop only (`hidden md:block`)
+- Detects cursor leaving viewport top (`mouseleave` on document)
+- Slides down from top: "Before you go — grab your free estimate. Most homeowners save 20% booking this month."
+- Gold CTA button + dismiss X
+- Shows only once per session (sessionStorage flag)
+
+---
+
+## Phase 8: Assembly & Polish
+
+### Update `Index.tsx`
+- Replace all placeholder sections with real components
+- Full section order with `SectionDivider` between each:
+  1. AnnouncementBar → Navbar → Hero
+  2. Divider → AsSeenIn
+  3. Divider → BeforeAfterSlider
+  4. Divider → ServicesGrid
+  5. Divider → MeetTheTeam
+  6. Divider → ProjectGallery
+  7. Divider → Reviews
+  8. Divider → FAQ
+  9. Divider → EstimateForm + WhatHappensNext
+  10. Divider → LocalProofBand
+  11. Footer (no divider after — it's the end)
+  12. StickyMobileCTA + ExitIntentBanner (fixed/overlay)
+
+### SEO & Accessibility
+- Add JSON-LD `LocalBusiness` schema in `index.html`
+- Ensure single `<h1>` (hero), proper heading hierarchy
+- Alt text on all images
+- Focus-visible states on interactive elements
+- Verify color contrast on all text
+
+### Checklist
+- Mark all Phase 4–8 items complete in `IMPLEMENTATION_LANDSCAPE1.md`
+
+---
+
+## Files to Create
+`MeetTheTeam.tsx`, `ProjectGallery.tsx`, `Reviews.tsx`, `FAQ.tsx`, `EstimateForm.tsx`, `WhatHappensNext.tsx`, `LocalProofBand.tsx`, `Footer.tsx`, `StickyMobileCTA.tsx`, `ExitIntentBanner.tsx`
+
+## Files to Modify
+`Index.tsx`, `index.html` (JSON-LD), `IMPLEMENTATION_LANDSCAPE1.md`
 
