@@ -88,19 +88,19 @@ src/
 - [x] **Section 2 — Navbar**: Logo left, anchor links center (Services, Our Work, Reviews, FAQ), gold CTA right. Frosted glass `backdrop-blur` on scroll. Mobile: hamburger → drawer with links + CTA pinned at bottom
 
 ### Phase 2: Hero & First Impression
-- [ ] **Section 3 — Hero**: Full-viewport, Unsplash garden bg + dark overlay, staggered CSS fade-in (headline → subheadline → CTA + microcopy)
-- [ ] **Hero trust badges**: Star rating, licensed/insured, "Serving Austin since 2013", "<2hr response time"
-- [ ] **Enhancement #1**: Animated count-up "Trusted by 500+ Austin homeowners" in hero
-- [ ] **Enhancement #9**: Parallax depth effect on hero background
-- [ ] **SectionDivider** component: Curved SVG divider (Enhancement #13)
+- [x] **Section 3 — Hero**: Full-viewport, Unsplash garden bg + dark overlay, staggered CSS fade-in (headline → subheadline → CTA + microcopy)
+- [x] **Hero trust badges**: Star rating, licensed/insured, "Serving Austin since 2013", "<2hr response time"
+- [x] **Enhancement #1**: Animated count-up "Trusted by 500+ Austin homeowners" in hero
+- [x] **Enhancement #9**: Parallax depth effect on hero background
+- [x] **SectionDivider** component: Curved SVG divider (Enhancement #13)
 
 ### Phase 3: Social Proof & Services
-- [ ] **Enhancement #3 — AsSeenIn**: Logo bar (Austin Monthly, Houzz, Nextdoor, BBB) between Hero and Before/After
-- [ ] **Section 4 — BeforeAfterSlider**: Dark green bg, `react-compare-slider`, two landscape images, project caption
-- [ ] **Enhancement #10**: Cursor-following radial gradient on dark sections (Before/After, FAQ)
-- [ ] **Section 5 — ServicesGrid**: 6 cards, responsive 2-col desktop / horizontal scroll mobile
-- [ ] **ServiceCard**: Full-bleed image, icon, name, benefit line. Hover: darken + description slide-up. Links to #estimate
-- [ ] **Enhancement #11**: Staggered reveal delays on service cards
+- [x] **Enhancement #3 — AsSeenIn**: Logo bar (Austin Monthly, Houzz, Nextdoor, BBB) between Hero and Before/After
+- [x] **Section 4 — BeforeAfterSlider**: Dark green bg, `react-compare-slider`, two landscape images, project caption
+- [x] **Enhancement #10**: Cursor-following radial gradient on dark sections (Before/After, FAQ)
+- [x] **Section 5 — ServicesGrid**: 6 cards, responsive 2-col desktop / horizontal scroll mobile
+- [x] **ServiceCard**: Full-bleed image, icon, name, benefit line. Hover: darken + description slide-up. Links to #estimate
+- [x] **Enhancement #11**: Staggered reveal delays on service cards
 
 ### Phase 4: Team & Gallery
 - [ ] **Section 6 — MeetTheTeam**: Founder bio (Marco Rivera), portrait placeholder, crew photo placeholder
