@@ -11,7 +11,7 @@ const trustBadges = [
 
 const Hero = () => {
   const [count, setCount] = useState(0);
-  const countRef = useRef<HTMLSpanElement>(null);
+  const countRef = useRef<HTMLParagraphElement>(null);
   const hasAnimated = useRef(false);
 
   useEffect(() => {
