@@ -77,15 +77,15 @@ src/
 ## Build Checklist
 
 ### Phase 0: Foundation
-- [ ] Update `index.html` — add Google Fonts (Playfair Display + DM Sans), meta title/description, favicon
-- [ ] Update `src/index.css` — HSL design tokens, font-face declarations, fade-up keyframes, utility classes
-- [ ] Update `tailwind.config.ts` — extend with brand colors (forest, gold, cream), font families, custom animations
-- [ ] Install `react-compare-slider` dependency
-- [ ] Create `useScrollReveal.ts` hook (IntersectionObserver, adds `.revealed` class)
+- [x] Update `index.html` — add Google Fonts (Playfair Display + DM Sans), meta title/description, favicon
+- [x] Update `src/index.css` — HSL design tokens, font-face declarations, fade-up keyframes, utility classes
+- [x] Update `tailwind.config.ts` — extend with brand colors (forest, gold, cream), font families, custom animations
+- [x] Install `react-compare-slider` dependency
+- [x] Create `useScrollReveal.ts` hook (IntersectionObserver, adds `.revealed` class)
 
 ### Phase 1: Navigation Shell
-- [ ] **Section 1 — AnnouncementBar**: Gold banner, spring booking message, dismiss button (X), stores dismissed state
-- [ ] **Section 2 — Navbar**: Logo left, anchor links center (Services, Our Work, Reviews, FAQ), gold CTA right. Frosted glass `backdrop-blur` on scroll. Mobile: hamburger → drawer with links + CTA pinned at bottom
+- [x] **Section 1 — AnnouncementBar**: Gold banner, spring booking message, dismiss button (X), stores dismissed state
+- [x] **Section 2 — Navbar**: Logo left, anchor links center (Services, Our Work, Reviews, FAQ), gold CTA right. Frosted glass `backdrop-blur` on scroll. Mobile: hamburger → drawer with links + CTA pinned at bottom
 
 ### Phase 2: Hero & First Impression
 - [ ] **Section 3 — Hero**: Full-viewport, Unsplash garden bg + dark overlay, staggered CSS fade-in (headline → subheadline → CTA + microcopy)
